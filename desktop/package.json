@@ -1,0 +1,37 @@
+{
+  "name": "workmw-vacancies-desktop",
+  "version": "1.0.0",
+  "description": "WorkMw Vacancy Generator for Windows",
+  "author": "WorkMw",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.workmw.vacancygenerator",
+    "productName": "WorkMw Vacancies",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "package.json", "www/**/*", "build/icon.png"],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "portable", "arch": ["x64"] },
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "portable": { "artifactName": "WorkMw-Vacancies-Portable.exe" },
+    "nsis": {
+      "artifactName": "WorkMw-Vacancies-Setup.exe",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true
+    }
+  }
+}
